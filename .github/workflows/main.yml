@@ -37,7 +37,7 @@ jobs:
     - name: Push Client to Docker Hub
       uses: docker/build-push-action@v2
       with:
-        repository: ${{ secrets.DOCKER_USERNAME }}/multi-client
+        repository: ${{ secrets.DOCKER_HUB_USERNAME }}/multi-client
         tags: latest
         push: true
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
@@ -45,7 +45,7 @@ jobs:
     - name: Push Nginx to Docker Hub
       uses: docker/build-push-action@v2
       with:
-        repository: ${{ secrets.DOCKER_USERNAME }}/multi-nginx
+        repository: ${{ secrets.DOCKER_HUB_USERNAME }}/multi-nginx
         tags: latest
         push: true
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
@@ -53,7 +53,7 @@ jobs:
     - name: Push server to Docker Hub
       uses: docker/build-push-action@v2
       with:
-        repository: ${{ secrets.DOCKER_USERNAME }}/multi-server
+        repository: ${{ secrets.DOCKER_HUB_USERNAME }}/multi-server
         tags: latest
         push: true
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
@@ -61,7 +61,7 @@ jobs:
     - name: Push worker to Docker Hub
       uses: docker/build-push-action@v2
       with:
-        repository: ${{ secrets.DOCKER_USERNAME }}/multi-worker
+        repository: ${{ secrets.DOCKER_HUB_USERNAME }}/multi-worker
         tags: latest
         push: true
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
