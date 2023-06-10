@@ -35,4 +35,5 @@ jobs:
       with:
         context: ./server
         file: ./server/Dockerfile
+        repository: ${{ secrets.DOCKER_HUB_USERNAME }}/multi-server
      
