@@ -37,4 +37,5 @@ jobs:
         file: ./server/Dockerfile
         image: kamligupta/multi-server
         repository: ${{ secrets.DOCKER_HUB_USERNAME }}/multi-server
+        tags: multi-server
      
