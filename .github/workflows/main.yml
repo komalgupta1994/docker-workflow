@@ -34,6 +34,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          push: true
-          repository: ${{ secrets.DOCKER_HUB_USERNAME }}/multi-server
+          repository: kamligupta/multi-server
           tags: latest
+          context: ./server
+          file: ./Dockerfile
+          push: true
