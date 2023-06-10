@@ -7,22 +7,12 @@ on:
     branches: [ "main" ]
 
 jobs:
-
-  build_job:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build ./server --file ./server/Dockerfile --tag multi-server
-
   push_job:
-    needs: build_job
+
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
     - name: Login to DockerHub
@@ -30,12 +20,10 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-    - name: Push to Docker Hub
-      uses: docker/build-push-action@v3
+    - name: Build and push
+      uses: docker/build-push-action@v4
       with:
         context: ./server
-        file: ./server/Dockerfile
-        image: kamligupta/multi-server
-        repository: ${{ secrets.DOCKER_HUB_USERNAME }}/multi-server
-        tags: latest
+        push: true
+        tags: kamligupta/app:latest
      
