@@ -28,5 +28,5 @@ jobs:
         context: ./server
         file: ./server/Dockerfile
         push: true
-        tags: latest
+        tags: kamligupta/server-app:latest
      
