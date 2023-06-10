@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Client Docker image
-      run: docker build --file Dockerfile --tag server:latest ./server
+      run: docker build ./server --file Dockerfile --tag server
 
   push_job:
     needs: build_job
