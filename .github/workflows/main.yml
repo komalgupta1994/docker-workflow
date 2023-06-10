@@ -15,18 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Client Docker image
-      run: docker build -t kamligupta/multi-client ./client
-    - name: Build the NGINX Docker image
-      run: docker build -t kamligupta/multi-nginx ./nginx
-    - name: Build the Server Docker image
       run: docker build -t kamligupta/multi-server ./server
-    - name: Build the Worker Docker image
-      run: docker build -t kamligupta/multi-worker ./worker
-    - name: Log in to Docker Hub
-      uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
-      with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
   push_job:
     needs: build_job
@@ -34,34 +23,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Push Client to Docker Hub
-      uses: docker/build-push-action@v2
-      with:
-        repository: ${{ secrets.DOCKER_HUB_USERNAME }}/multi-client
-        tags: latest
-        push: true
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-    - name: Push Nginx to Docker Hub
-      uses: docker/build-push-action@v2
-      with:
-        repository: ${{ secrets.DOCKER_HUB_USERNAME }}/multi-nginx
-        tags: latest
-        push: true
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Push server to Docker Hub
       uses: docker/build-push-action@v2
       with:
         repository: ${{ secrets.DOCKER_HUB_USERNAME }}/multi-server
-        tags: latest
-        push: true
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-    - name: Push worker to Docker Hub
-      uses: docker/build-push-action@v2
-      with:
-        repository: ${{ secrets.DOCKER_HUB_USERNAME }}/multi-worker
         tags: latest
         push: true
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
