@@ -32,4 +32,4 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
       - name: Build and push
-        run: docker push kamligupta/multi-server
+        run: docker push kamligupta/multi-server:latest
