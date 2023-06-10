@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build -t kamligupta/multi-server ./server
+      run: docker build ./server --file ./server/Dockerfile --tag multi-server
 
   push_job:
     needs: build_job
