@@ -22,11 +22,32 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-    - name: Build and push
+    - name: Build and push server app
       uses: docker/build-push-action@v3
       with:
         context: ./server
         file: ./server/Dockerfile
         push: true
         tags: kamligupta/server-app:latest
+    - name: Build and push client app
+      uses: docker/build-push-action@v3
+      with:
+        context: ./client
+        file: ./client/Dockerfile
+        push: true
+        tags: kamligupta/client-app:latest
+    - name: Build and push worker app
+      uses: docker/build-push-action@v3
+      with:
+        context: ./worker
+        file: ./worker/Dockerfile
+        push: true
+        tags: kamligupta/worker-app:latest
+    - name: Build and push nginx
+      uses: docker/build-push-action@v3
+      with:
+        context: ./nginx
+        file: ./nginx/Dockerfile
+        push: true
+        tags: kamligupta/nginx-app:latest
      
